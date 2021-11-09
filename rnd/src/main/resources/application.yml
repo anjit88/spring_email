@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: NOTIFIATIONSERVICE
+    
+  profiles:
+    active: k8s
+  
+---
+spring:
+  profiles: k8s
+  display-name: TEJAS NOTIFIATION SERVICE         
+   
+server:
+  port: 8084
+
+communication:
+ mail:
+  from: tejas-vi@nic.in
+  host: smtp.gmail.com
+  port: 587
+  username: anjit.kr@gmail.com
+  password: Admin@123
+ sms:
+  url: https://smsgw.sms.gov.in/failsafe/HttpLink
+  provider-name: splus.auth
+  provider-password: B*73we$s
+  signature-id: SVPLUS
+ sandes:
+  url: https://apigateway.gimkerala.nic.in/v1/api/
+  uri: message/multicast
+  client-id: 1a40528a-2820-4eed-888b-30411510cda6
+  client-secret: 47a6863693b9ffe26bb1799dcbf14adb
+ 
+logging:
+  level:
+     root: INFO
+     org.springframework: INFO
+  file:  ${LOG_FILE_PATH:D:\\reports\\bi-log.log}
+  pattern:
+    file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'      
